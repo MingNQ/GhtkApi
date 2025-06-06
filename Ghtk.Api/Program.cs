@@ -1,3 +1,5 @@
+using ClientAuthentication;
+using Ghtk.Api.AuthenticationHandler;
 using Ghtk.Authorization;
 
 namespace Ghtk.Api
@@ -8,13 +10,15 @@ namespace Ghtk.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            IClientSourceAuthenticationHandler clientSourceAuthenticationHandler = new RemoteClientSourceAuthenticationHandler(builder.Configuration["AuthenticationService"] ?? throw new Exception("AuthenticationService url not found!"));
+
             // Add services to the container.
 
             builder.Services.AddControllers();
 
             builder.Services.AddAuthentication("X-Client-Source").AddXClientSource(options =>
             {
-                options.ClientValidator = (clientSource, token, principal) => true;
+                options.ClientValidator = (clientSource, token, principal) => clientSourceAuthenticationHandler.Validate(clientSource);
                 options.IssuerSigningKey = builder.Configuration["IssuerSigningKey"] ?? "";
             });
 
