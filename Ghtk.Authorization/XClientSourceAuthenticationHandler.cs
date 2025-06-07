@@ -42,6 +42,7 @@ namespace Ghtk.Authorization
                 !string.IsNullOrEmpty(tokenValue) && 
                 VerifyClient(clientSourceValue, tokenValue, out var principal))
             {
+                ((ClaimsIdentity)(principal!.Identity!)).AddClaim(new Claim("PartnerId", clientSourceValue));
                 var ticket = new AuthenticationTicket(principal, Scheme.Name);
 
                 return Task.FromResult(AuthenticateResult.Success(ticket));

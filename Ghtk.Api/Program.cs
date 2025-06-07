@@ -1,6 +1,7 @@
 using ClientAuthentication;
 using Ghtk.Api.AuthenticationHandler;
 using Ghtk.Authorization;
+using Ghtk.Repository;
 
 namespace Ghtk.Api
 {
@@ -15,12 +16,13 @@ namespace Ghtk.Api
             // Add services to the container.
 
             builder.Services.AddControllers();
-
             builder.Services.AddAuthentication("X-Client-Source").AddXClientSource(options =>
             {
                 options.ClientValidator = (clientSource, token, principal) => clientSourceAuthenticationHandler.Validate(clientSource);
                 options.IssuerSigningKey = builder.Configuration["IssuerSigningKey"] ?? "";
             });
+            builder.Services.AddMongoDbClient(builder.Configuration);
+            builder.Services.AddScoped<IOrderRepository, MongoDbOrderRepository>();
 
             var app = builder.Build();
 

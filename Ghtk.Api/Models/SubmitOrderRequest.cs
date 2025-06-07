@@ -5,7 +5,7 @@ namespace Ghtk.Api.Models
     public class SubmitOrderRequest
     {
         [JsonPropertyName("products")]
-        public Product[] Products { get; set; } = [];
+        public OrderProduct[] Products { get; set; } = [];
 
         [JsonPropertyName("order")]
         public SubmitOrderRequestOrder Order { get; set; } = default!;
@@ -80,7 +80,7 @@ namespace Ghtk.Api.Models
         public string DeliverOption { get; set; } = default!;
     }
 
-    public class Product
+    public class OrderProduct
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = default!;

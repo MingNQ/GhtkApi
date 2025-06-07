@@ -9,6 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ClientAuthentication\ClientAuthentication.csproj" />
     <ProjectReference Include="..\Ghtk.Authorization\Ghtk.Authorization.csproj" />
+    <ProjectReference Include="..\Ghtk.Repository.MongoDb\Ghtk.Repository.MongoDb.csproj" />
+    <ProjectReference Include="..\Ghtk.Repository\Ghtk.Repository.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

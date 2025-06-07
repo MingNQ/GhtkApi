@@ -9,10 +9,10 @@ using System.Text.Json.Serialization;
 public class GetOrderStatusResponse : ApiResult
 {
     [JsonPropertyName("order")]
-    public Order Order { get; set; } = default!;
+    public GetOrderStatusOrder Order { get; set; } = default!;
 }
 
-public class Order
+public class GetOrderStatusOrder
 {
     [JsonPropertyName("label_id")]
     public string LabelId { get; set; } = default!;
@@ -60,7 +60,7 @@ public class Order
     public int Insurance { get; set; }
 
     [JsonPropertyName("value")]
-    public int Value { get; set; }
+    public long Value { get; set; }
 
     [JsonPropertyName("weight")]
     public int Weight { get; set; }

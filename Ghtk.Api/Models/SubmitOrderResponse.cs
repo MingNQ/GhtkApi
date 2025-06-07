@@ -26,7 +26,7 @@ namespace Ghtk.Api.Models
         public double InsuranceFee { get; set; }
 
         [JsonPropertyName("tracking_id")]
-        public long TrackingId { get; set; }
+        public string TrackingId { get; set; } = default!;
 
         [JsonPropertyName("estimated_pick_time")]
         public string EstimatedPickTime { get; set; } = default!;
@@ -35,7 +35,7 @@ namespace Ghtk.Api.Models
         public string EstimatedDeliverTime { get; set; } = default!;
 
         [JsonPropertyName("products")]
-        public Product[] Products { get; set; } = [];
+        public OrderProduct[] Products { get; set; } = [];
 
         [JsonPropertyName("status_id")]
         public long StatusId { get; set; }
